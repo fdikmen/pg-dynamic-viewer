@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { getServerUrl } from './config';
+import api from './api';
 
 function App() {
   const [tableName, setTableName] = useState('');
@@ -11,7 +10,7 @@ function App() {
   const fetchTable = async () => {
     try {
       setError('');
-      const res = await axios.get(`${getServerUrl()}/table/${tableName}`);
+      const res = await api.get(`/table/${tableName}`);
       setData(res.data);
       setColumns(res.data.length ? Object.keys(res.data[0]) : []);
     } catch (err) {
