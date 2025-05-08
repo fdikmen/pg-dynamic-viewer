@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { getServerUrl } from './config';
 
 function App() {
   const [tableName, setTableName] = useState('');
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
+  const [error, setError] = useState('');
 
   const fetchTable = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/table/${tableName}`);
+      setError('');
+      const res = await axios.get(`${getServerUrl()}/table/${tableName}`);
       setData(res.data);
       setColumns(res.data.length ? Object.keys(res.data[0]) : []);
     } catch (err) {
-      alert('Hata: ' + err.message);
+      const errorMessage = err.response?.data?.error || err.message;
+      setError('Hata: ' + errorMessage);
       setData([]);
       setColumns([]);
     }
@@ -27,6 +31,8 @@ function App() {
         placeholder="Tablo adı girin"
       />
       <button onClick={fetchTable}>Göster</button>
+
+      {error && <div style={{ color: 'red', marginTop: '1rem' }}>{error}</div>}
 
       {columns.length > 0 && (
         <table border="1" cellPadding="8" style={{ marginTop: '1rem' }}>
