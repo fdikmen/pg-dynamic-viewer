@@ -1,6 +1,46 @@
 # PostgreSQL Dynamic Table Viewer
 
-A web application that allows users to dynamically view and explore PostgreSQL database tables. Built with React for the frontend and Node.js/Express for the backend.
+A web application that allows users to dynamically view and explore PostgreSQL database tables.
+
+## Quick Start
+
+1. Install dependencies:
+   ```bash
+   npm run setup
+   ```
+
+2. Configure database in `config.js`:
+   ```javascript
+   database: {
+     user: 'postgres',      // your postgres username
+     host: 'localhost',     // your database host
+     database: 'test',      // your database name
+     password: '12345678',  // your database password
+     port: 5432,           // your database port
+     schema: 'employees'    // your schema name
+   }
+   ```
+
+3. Start the application:
+   ```bash
+   npm start
+   ```
+
+4. Open `http://localhost:3000` in your browser
+
+## Project Structure
+
+```
+pg-dynamic-viewer/
+├── client/                 # React frontend
+├── server/                 # Express backend
+├── config.js              # Database and server configuration
+└── package.json           # Root package.json
+```
+
+## API Endpoint
+
+- `http://localhost:4000/table/:tableName` - Get table data
 
 ## Features
 
@@ -15,21 +55,6 @@ A web application that allows users to dynamically view and explore PostgreSQL d
 - Node.js (v14 or higher)
 - PostgreSQL (v12 or higher)
 - npm or yarn package manager
-
-## Project Structure
-
-```
-pg-dynamic-viewer/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── App.js         # Main application component
-│   │   └── config.js      # Frontend configuration
-├── server/                 # Express backend
-│   ├── index.js           # Server implementation
-│   └── package.json       # Server dependencies
-├── config.js              # Central configuration file
-└── package.json           # Root package.json
-```
 
 ## Configuration
 
