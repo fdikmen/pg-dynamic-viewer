@@ -42,6 +42,8 @@ pg-dynamic-viewer/
 
 - `http://localhost:4000/table/:tableName` - Get table data
 
+![sample](https://github.com/user-attachments/assets/916488bd-cc14-4823-b182-6fbd07d2dfb4)
+
 ## Features
 
 - Dynamic table viewing from PostgreSQL database
